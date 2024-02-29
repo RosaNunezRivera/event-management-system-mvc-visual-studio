@@ -1,0 +1,85 @@
+﻿@model event_management_system_mvc.Models.CompositeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateEventView")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Event Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Registration DeadLine
+        </th>
+        <th>
+            Ticket Price
+        </th>
+        <th>
+            Registrations
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.EventsCol)
+    {
+        <tr>
+            <td>
+                @item.EventName
+            </td>
+            <td>
+                @item.EventDescription
+            </td>
+            <td>
+                @item.LocationName
+            </td>
+            <td>
+                @item.StartDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.EndDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.RegistrationDeadLine.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.TicketPrice.ToString("C")
+            </td>
+            <td>
+                <p>@Model.countRegistration(item.EventID)</p>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEventView", new { eventId = item.EventID }) |
+                @Html.ActionLink("Registration", "Index", "Registration", new { eventId = item.EventID }, null) |
+                @Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventID })
+            </td>
+        </tr>
+    }
+</table>
+<div class="form-group">
+ @if (!string.IsNullOrEmpty(ViewBag.Message))
+ {
+     <div class="col-md-offset-2 col-md-10" style="color:green">
+         @ViewBag.Message
+     </div>
+}
+</div>
+
+

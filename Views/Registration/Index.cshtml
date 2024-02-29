@@ -1,0 +1,58 @@
+﻿@model event_management_system_mvc.Models.CompositeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    int eventId = Model.EventsCol.FirstOrDefault()?.EventID ?? -1;
+    string evName = Model.getEventName(eventId);
+}
+<h2>Registration</h2>
+<h3>Event @evName</h3>
+
+<p>
+    @Html.ActionLink("Create New Registration", "CreateRegistration")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Registration Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.RegistrationsCol)
+    {
+        <tr>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.RegistrationDate
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRegistrationView", new { registrationId = item.RegistrationID }) |
+                @Html.ActionLink("Delete", "DeleteRegistration", new { registrationId = item.RegistrationID })
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Back to Events", "Index", "Event")
+</div>

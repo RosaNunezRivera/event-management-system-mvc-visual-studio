@@ -6,7 +6,11 @@
 <h2>Events</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEventView")
+    @Html.ActionLink("Create New Event", "CreateEventView")
+</p>
+
+<p>
+    @Html.ActionLink("Create New Registration", "CreateRegistrationAnyEvent", "Registration") |
 </p>
 
 <table class="table">
@@ -67,19 +71,19 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditEventView", new { eventId = item.EventID }) |
-                @Html.ActionLink("Registration", "Index", "Registration", new { eventId = item.EventID }, null) |
+                @Html.ActionLink("Details", "Index", "Registration", new { eventId = item.EventID }, null) |
                 @Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventID })
             </td>
         </tr>
     }
 </table>
 <div class="form-group">
- @if (!string.IsNullOrEmpty(ViewBag.Message))
- {
-     <div class="col-md-offset-2 col-md-10" style="color:green">
-         @ViewBag.Message
-     </div>
-}
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="col-md-offset-2 col-md-10" style="color:green">
+            @ViewBag.Message
+        </div>
+    }
 </div>
 
 

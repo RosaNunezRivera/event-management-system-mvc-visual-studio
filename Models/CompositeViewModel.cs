@@ -29,6 +29,4 @@ namespace event_management_system_mvc.Models
             }
         }
     }
-
-    
 }
